@@ -1,0 +1,278 @@
+{
+  // ─── Class Boilerplate ────────────────────────────────────────────────────
+
+  "Node3D Class": {
+    "prefix": "n3d",
+    "description": "Node3D _ready / _process scaffold",
+    "body": [
+      "extends Node3D",
+      "",
+      "",
+      "func _ready() -> void:",
+      "\t$0",
+      "",
+      "",
+      "func _process(delta: float) -> void:",
+      "\tpass"
+    ]
+  },
+
+  "CharacterBody3D Class": {
+    "prefix": "cb3d",
+    "description": "CharacterBody3D with gravity + move_and_slide",
+    "body": [
+      "extends CharacterBody3D",
+      "",
+      "const SPEED: float = ${1:5.0}",
+      "const JUMP_VELOCITY: float = ${2:4.5}",
+      "",
+      "",
+      "func _ready() -> void:",
+      "\t$0",
+      "",
+      "",
+      "func _physics_process(delta: float) -> void:",
+      "\t# Apply gravity",
+      "\tif not is_on_floor():",
+      "\t\tvelocity += get_gravity() * delta",
+      "",
+      "\t# Jump",
+      "\tif Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():",
+      "\t\tvelocity.y = JUMP_VELOCITY",
+      "",
+      "\t# Horizontal movement",
+      "\tvar direction: Vector3 = _get_input_direction()",
+      "\tif direction:",
+      "\t\tvelocity.x = direction.x * SPEED",
+      "\t\tvelocity.z = direction.z * SPEED",
+      "\telse:",
+      "\t\tvelocity.x = move_toward(velocity.x, 0, SPEED)",
+      "\t\tvelocity.z = move_toward(velocity.z, 0, SPEED)",
+      "",
+      "\tmove_and_slide()",
+      "",
+      "",
+      "func _get_input_direction() -> Vector3:",
+      "\tvar input_dir := Input.get_vector(\"move_left\", \"move_right\", \"move_forward\", \"move_back\")",
+      "\treturn (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()"
+    ]
+  },
+
+  "StateMachine": {
+    "prefix": "statemachine",
+    "description": "Simple enum-based state machine scaffold",
+    "body": [
+      "extends Node3D",
+      "",
+      "enum State {",
+      "\t${1:IDLE},",
+      "\t${2:WALK},",
+      "\t${3:ATTACK},",
+      "}",
+      "",
+      "var current_state: State = State.${1:IDLE}",
+      "",
+      "",
+      "func _ready() -> void:",
+      "\t_enter_state(current_state)",
+      "",
+      "",
+      "func _physics_process(delta: float) -> void:",
+      "\t_update_state(current_state, delta)",
+      "",
+      "",
+      "func transition_to(new_state: State) -> void:",
+      "\tif new_state == current_state:",
+      "\t\treturn",
+      "\t_exit_state(current_state)",
+      "\tcurrent_state = new_state",
+      "\t_enter_state(current_state)",
+      "",
+      "",
+      "func _enter_state(state: State) -> void:",
+      "\tmatch state:",
+      "\t\tState.${1:IDLE}:",
+      "\t\t\t$0",
+      "",
+      "",
+      "func _exit_state(state: State) -> void:",
+      "\tmatch state:",
+      "\t\tState.${1:IDLE}:",
+      "\t\t\tpass",
+      "",
+      "",
+      "func _update_state(state: State, delta: float) -> void:",
+      "\tmatch state:",
+      "\t\tState.${1:IDLE}:",
+      "\t\t\tpass"
+    ]
+  },
+
+  // ─── Signals ──────────────────────────────────────────────────────────────
+
+  "Signal Declaration": {
+    "prefix": "sig",
+    "description": "Signal with optional typed args",
+    "body": ["signal ${1:signal_name}(${2:arg: type})"]
+  },
+
+  "Connect Signal (Callable)": {
+    "prefix": "connect",
+    "description": "Connect a signal to a method via Callable",
+    "body": ["${1:node}.${2:signal_name}.connect(_on_${3:node_name}_${2:signal_name})"]
+  },
+
+  "Emit Signal": {
+    "prefix": "emit",
+    "description": "Emit a signal",
+    "body": ["${1:signal_name}.emit(${2:args})"]
+  },
+
+  // ─── Variables & Properties ───────────────────────────────────────────────
+
+  "Export Variable": {
+    "prefix": "exp",
+    "description": "@export typed variable",
+    "body": ["@export var ${1:variable_name}: ${2:type} = ${3:value}"]
+  },
+
+  "Export Range": {
+    "prefix": "exprange",
+    "description": "@export_range float",
+    "body": ["@export_range(${1:0.0}, ${2:1.0}, ${3:0.01}) var ${4:name}: float = ${5:0.5}"]
+  },
+
+  "Onready Variable": {
+    "prefix": "onr",
+    "description": "@onready node reference",
+    "body": ["@onready var ${1:variable_name}: ${2:Node} = $${3:NodePath}"]
+  },
+
+  // ─── Resource / Scene Loading ─────────────────────────────────────────────
+
+  "Preload Resource": {
+    "prefix": "pre",
+    "description": "const preload shorthand",
+    "body": ["const ${1:NAME}: ${2:Resource} = preload(\"res://${3:path/to/resource}\")"]
+  },
+
+  "Load Resource Async": {
+    "prefix": "loadasync",
+    "description": "ResourceLoader.load_threaded_request pattern",
+    "body": [
+      "ResourceLoader.load_threaded_request(\"res://${1:path/to/scene.tscn}\")",
+      "# Later in _process:",
+      "# var status := ResourceLoader.load_threaded_get_status(\"res://${1:path/to/scene.tscn}\")",
+      "# if status == ResourceLoader.THREAD_LOAD_LOADED:",
+      "# \tvar resource := ResourceLoader.load_threaded_get(\"res://${1:path/to/scene.tscn}\")",
+      "$0"
+    ]
+  },
+
+  "Instantiate Scene": {
+    "prefix": "inst",
+    "description": "Instantiate a PackedScene and add as child",
+    "body": [
+      "var ${1:instance}: ${2:Node} = ${3:SCENE}.instantiate()",
+      "add_child(${1:instance})",
+      "$0"
+    ]
+  },
+
+  // ─── Area3D / Physics ─────────────────────────────────────────────────────
+
+  "Area3D Body Entered": {
+    "prefix": "area3d",
+    "description": "Area3D body_entered / body_exited scaffold",
+    "body": [
+      "extends Area3D",
+      "",
+      "",
+      "func _ready() -> void:",
+      "\tbody_entered.connect(_on_body_entered)",
+      "\tbody_exited.connect(_on_body_exited)",
+      "",
+      "",
+      "func _on_body_entered(body: Node3D) -> void:",
+      "\t$0",
+      "",
+      "",
+      "func _on_body_exited(body: Node3D) -> void:",
+      "\tpass"
+    ]
+  },
+
+  // ─── Tweening & Animation ─────────────────────────────────────────────────
+
+  "Tween": {
+    "prefix": "tween",
+    "description": "Create and run a Tween",
+    "body": [
+      "var tween := create_tween().set_trans(Tween.TRANS_${1:SINE}).set_ease(Tween.EASE_${2:IN_OUT})",
+      "tween.tween_property(${3:self}, \"${4:property}\", ${5:target_value}, ${6:0.3})",
+      "$0"
+    ]
+  },
+
+  "AnimationPlayer Play": {
+    "prefix": "aplay",
+    "description": "Play animation via AnimationPlayer",
+    "body": [
+      "@onready var _anim: AnimationPlayer = $${1:AnimationPlayer}",
+      "",
+      "_anim.play(\"${2:animation_name}\")"
+    ]
+  },
+
+  // ─── Utility ─────────────────────────────────────────────────────────────
+
+  "Autoload Singleton Access": {
+    "prefix": "autoload",
+    "description": "Access an Autoload singleton",
+    "body": ["${1:GameManager}.${2:method_or_property}"]
+  },
+
+  "Debug Print": {
+    "prefix": "pp",
+    "description": "print with label for quick debugging",
+    "body": ["print(\"[${TM_FILENAME_BASE}] ${1:label}: \", ${2:value})"]
+  },
+
+  "Assert": {
+    "prefix": "ass",
+    "description": "assert with message",
+    "body": ["assert(${1:condition}, \"${2:Assertion failed: message}\")"]
+  },
+
+  "Callable Deferred": {
+    "prefix": "defer",
+    "description": "call_deferred wrapper",
+    "body": ["${1:node}.call_deferred(\"${2:method_name}\"${3:, args})"]
+  },
+
+  // ─── Camera ───────────────────────────────────────────────────────────────
+
+  "3D Camera Spring Arm": {
+    "prefix": "cam3d",
+    "description": "Third-person camera with SpringArm3D",
+    "body": [
+      "extends Node3D",
+      "",
+      "@export var mouse_sensitivity: float = 0.002",
+      "",
+      "@onready var _spring_arm: SpringArm3D = $${1:SpringArm3D}",
+      "@onready var _camera: Camera3D = $${2:SpringArm3D/Camera3D}",
+      "",
+      "",
+      "func _ready() -> void:",
+      "\tInput.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)",
+      "",
+      "",
+      "func _unhandled_input(event: InputEvent) -> void:",
+      "\tif event is InputEventMouseMotion:",
+      "\t\trotate_y(-event.relative.x * mouse_sensitivity)",
+      "\t\t_spring_arm.rotate_x(-event.relative.y * mouse_sensitivity)",
+      "\t\t_spring_arm.rotation.x = clamp(_spring_arm.rotation.x, -PI / 3.0, PI / 4.0)"
+    ]
+  }
+}

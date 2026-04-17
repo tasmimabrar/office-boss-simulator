@@ -1,0 +1,36 @@
+{
+  "recommendations": [
+    // --- Core Godot ---
+    "geequlim.godot-tools",           // GDScript language server, DAP debugger, scene preview
+
+    // --- Git & Source Control ---
+    "eamodio.gitlens",                // Supercharged Git: blame, history, code lens
+    "mhutchie.git-graph",             // Visual branch/commit graph
+
+    // --- Code Quality ---
+    "usernamehw.errorlens",           // Inline error/warning highlighting
+    "streetsidesoftware.code-spell-checker", // Catches typos in comments & identifiers
+    "gruntfuggly.todo-tree",          // Aggregates TODO / FIXME / BUG / HACK / DESIGN / PERF tags
+
+    // --- Editor Productivity ---
+    "christian-kohler.path-intellisense", // Autocomplete file paths in strings
+    "alefragnani.bookmarks",          // Named bookmarks for large codebases
+    "editorconfig.editorconfig",      // Applies .editorconfig rules automatically
+
+    // --- Data & Assets ---
+    "mechatroner.rainbow-csv",        // Color-coded CSV for data tables / balancing sheets
+    "redhat.vscode-yaml",             // YAML support for CI/config files
+    "tamasfe.even-better-toml",       // TOML support
+
+    // --- Documentation ---
+    "yzhang.markdown-all-in-one",     // Markdown preview, shortcuts, TOC generation
+    "bierner.markdown-mermaid",       // Mermaid diagram preview in Markdown
+
+    // --- Shaders ---
+    "raczzalan.webgl-glsl-editor",    // GLSL syntax for .vert / .frag files
+
+    // --- Misc / QoL ---
+    "pkief.material-icon-theme",      // Clear file icons for Godot asset types
+    "zhuangtongfa.material-theme"     // Dark theme popular with Godot devs
+  ]
+}

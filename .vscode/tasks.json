@@ -1,0 +1,215 @@
+{
+  "version": "2.0.0",
+  // All tasks use the Godot executable path configured in settings.json.
+  // Set "godotTools.editorPath.godot4" before running any task.
+  "tasks": [
+    // ─── Development ────────────────────────────────────────────────────────
+    {
+      "label": "Run Game",
+      "type": "shell",
+      "command": "${config:godotTools.editorPath.godot4}",
+      "args": ["--path", "${workspaceFolder}"],
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "new", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Game (Verbose)",
+      "type": "shell",
+      "command": "${config:godotTools.editorPath.godot4}",
+      "args": ["--path", "${workspaceFolder}", "--verbose"],
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "new", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Game (Debug Collisions & Nav)",
+      "type": "shell",
+      "command": "${config:godotTools.editorPath.godot4}",
+      "args": [
+        "--path", "${workspaceFolder}",
+        "--debug-collisions",
+        "--debug-navigation",
+        "--debug-avoidance"
+      ],
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "new", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Open Godot Editor",
+      "type": "shell",
+      "command": "${config:godotTools.editorPath.godot4}",
+      "args": ["--path", "${workspaceFolder}", "--editor"],
+      "group": "build",
+      "presentation": { "reveal": "silent", "panel": "shared" },
+      "problemMatcher": []
+    },
+
+    // ─── Export ─────────────────────────────────────────────────────────────
+    {
+      "label": "Export: Windows — Release",
+      "type": "shell",
+      "command": "${config:godotTools.editorPath.godot4}",
+      "args": [
+        "--headless",
+        "--path", "${workspaceFolder}",
+        "--export-release", "Windows Desktop",
+        "${workspaceFolder}/exports/windows/game.exe"
+      ],
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Export: Windows — Debug",
+      "type": "shell",
+      "command": "${config:godotTools.editorPath.godot4}",
+      "args": [
+        "--headless",
+        "--path", "${workspaceFolder}",
+        "--export-debug", "Windows Desktop",
+        "${workspaceFolder}/exports/windows/game_debug.exe"
+      ],
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Export: Web (HTML5) — Release",
+      "type": "shell",
+      "command": "${config:godotTools.editorPath.godot4}",
+      "args": [
+        "--headless",
+        "--path", "${workspaceFolder}",
+        "--export-release", "Web",
+        "${workspaceFolder}/exports/web/index.html"
+      ],
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Export: Linux — Release",
+      "type": "shell",
+      "command": "${config:godotTools.editorPath.godot4}",
+      "args": [
+        "--headless",
+        "--path", "${workspaceFolder}",
+        "--export-release", "Linux/X11",
+        "${workspaceFolder}/exports/linux/game.x86_64"
+      ],
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+
+    // ─── Validation ──────────────────────────────────────────────────────────
+    {
+      // Runs Godot headlessly in editor mode just long enough to import all
+      // assets and validate all GDScript files. Errors appear in the terminal.
+      "label": "Validate Project (Headless)",
+      "type": "shell",
+      "command": "${config:godotTools.editorPath.godot4}",
+      "args": [
+        "--headless",
+        "--path", "${workspaceFolder}",
+        "--editor",
+        "--quit"
+      ],
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": "$godot"
+    },
+
+    // ─── Cleanup ─────────────────────────────────────────────────────────────
+    {
+      "label": "Clean: .godot Cache",
+      "type": "shell",
+      "command": "Remove-Item",
+      "args": ["-Recurse", "-Force", "${workspaceFolder}/.godot"],
+      "windows": {
+        "command": "powershell",
+        "args": ["-Command", "Remove-Item -Recurse -Force '${workspaceFolder}/.godot' -ErrorAction SilentlyContinue; Write-Host '.godot cache cleared.'"]
+      },
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean: Exports",
+      "type": "shell",
+      "windows": {
+        "command": "powershell",
+        "args": ["-Command", "Get-ChildItem '${workspaceFolder}/exports' -Recurse | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue; Write-Host 'Exports cleared.'"]
+      },
+      "command": "find",
+      "args": ["${workspaceFolder}/exports", "-mindepth", "1", "-delete"],
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+
+    // ─── Git Helpers ─────────────────────────────────────────────────────────
+    {
+      "label": "Git: Stage All",
+      "type": "shell",
+      "command": "git",
+      "args": ["add", "."],
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Status",
+      "type": "shell",
+      "command": "git",
+      "args": ["status"],
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      // Stages everything and commits. VS Code will prompt for the message
+      // via the integrated terminal input.
+      "label": "Git: Stage All & Commit",
+      "type": "shell",
+      "command": "git",
+      "args": ["add", ".", "&&", "git", "commit"],
+      "windows": {
+        "command": "powershell",
+        "args": ["-Command", "git add . ; $msg = Read-Host 'Commit message'; git commit -m $msg"]
+      },
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Push",
+      "type": "shell",
+      "command": "git",
+      "args": ["push"],
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Pull",
+      "type": "shell",
+      "command": "git",
+      "args": ["pull"],
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Log (Oneline)",
+      "type": "shell",
+      "command": "git",
+      "args": ["log", "--oneline", "--graph", "--decorate", "-20"],
+      "group": "none",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    }
+  ]
+}

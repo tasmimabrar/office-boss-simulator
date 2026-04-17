@@ -1,0 +1,81 @@
+# Auto-detect text files and normalize line endings to LF on commit.
+* text=auto eol=lf
+
+# ─── GDScript & Godot Text Formats ───────────────────────────────────────────
+*.gd            text eol=lf
+*.gdshader      text eol=lf
+*.shader        text eol=lf
+*.tscn          text eol=lf
+*.tres          text eol=lf
+*.godot         text eol=lf
+*.import        text eol=lf
+*.cfg           text eol=lf
+*.theme         text eol=lf
+*.gdextension   text eol=lf
+
+# ─── C# (if mixed project) ───────────────────────────────────────────────────
+*.cs            text eol=lf
+*.csproj        text eol=lf
+*.sln           text eol=lf
+
+# ─── Web / Config ─────────────────────────────────────────────────────────────
+*.json          text eol=lf
+*.yaml          text eol=lf
+*.yml           text eol=lf
+*.toml          text eol=lf
+*.md            text eol=lf
+*.txt           text eol=lf
+*.sh            text eol=lf
+*.bat           text eol=crlf
+*.ps1           text eol=crlf
+
+# ─── 3D Models (text-based) ───────────────────────────────────────────────────
+*.gltf          text eol=lf
+*.obj           text eol=lf
+*.mtl           text eol=lf
+
+# ─── Binary: Images ───────────────────────────────────────────────────────────
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.webp          binary
+*.gif           binary
+*.bmp           binary
+*.tga           binary
+*.tiff          binary
+*.psd           binary
+*.svg           text eol=lf
+
+# ─── Binary: Audio ────────────────────────────────────────────────────────────
+*.mp3           binary
+*.ogg           binary
+*.wav           binary
+*.flac          binary
+*.opus          binary
+
+# ─── Binary: Video ────────────────────────────────────────────────────────────
+*.mp4           binary
+*.webm          binary
+*.ogv           binary
+
+# ─── Binary: 3D Models ────────────────────────────────────────────────────────
+*.glb           binary
+*.fbx           binary
+*.blend         binary
+*.dae           binary
+
+# ─── Binary: Fonts ────────────────────────────────────────────────────────────
+*.ttf           binary
+*.otf           binary
+*.woff          binary
+*.woff2         binary
+
+# ─── Binary: Godot compiled/cache ─────────────────────────────────────────────
+*.pck           binary
+*.exe           binary
+*.x86_64        binary
+*.apk           binary
+*.ipa           binary
+
+# ─── Linguist: Mark generated / vendor files ──────────────────────────────────
+addons/*        linguist-vendored

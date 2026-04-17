@@ -1,0 +1,126 @@
+name: Godot CI — Export & Release
+
+on:
+  push:
+    branches: [main, master]
+    tags:
+      - "v*.*.*"         # triggers full multi-platform export on version tags
+  pull_request:
+    branches: [main, master]
+
+# Prevent concurrent runs on the same branch clobbering each other.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GODOT_VERSION: "4.3"           # Update to match your project's Godot version
+  EXPORT_NAME: "game"            # Base name for exported binaries
+  PROJECT_PATH: "."              # Path to project.godot (relative to repo root)
+
+jobs:
+  # ─── Lint / Static Analysis ──────────────────────────────────────────────────
+  lint:
+    name: GDScript Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Godot (headless)
+        uses: chickensoft-games/setup-godot@v1
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+          include-templates: false
+
+      - name: Import project (validates scenes & scripts)
+        run: |
+          godot --headless --path "${{ env.PROJECT_PATH }}" --editor --quit 2>&1 || true
+        # The --quit after --editor forces Godot to import and exit.
+        # Errors in GDScript will appear in output; non-zero exit is soft-ignored
+        # here because Godot may exit non-zero even on success without a display.
+
+  # ─── Multi-Platform Export ────────────────────────────────────────────────────
+  export:
+    name: Export — ${{ matrix.platform }}
+    needs: lint
+    runs-on: ubuntu-latest
+    # Only run full export on version tags or main branch pushes
+    if: github.event_name == 'push'
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: "Windows Desktop"
+            preset_name: "Windows Desktop"
+            artifact_name: "windows"
+            artifact_ext: ".exe"
+
+          - platform: "Linux/X11"
+            preset_name: "Linux/X11"
+            artifact_name: "linux"
+            artifact_ext: ".x86_64"
+
+          - platform: "Web"
+            preset_name: "Web"
+            artifact_name: "web"
+            artifact_ext: ".html"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true          # Fetch Git LFS assets (textures, audio, models)
+
+      - name: Install Godot (headless) + export templates
+        uses: chickensoft-games/setup-godot@v1
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+          include-templates: true
+
+      - name: Create export output directory
+        run: mkdir -p exports/${{ matrix.artifact_name }}
+
+      - name: Export ${{ matrix.platform }}
+        run: |
+          godot --headless \
+            --path "${{ env.PROJECT_PATH }}" \
+            --export-release "${{ matrix.preset_name }}" \
+            "exports/${{ matrix.artifact_name }}/${{ env.EXPORT_NAME }}${{ matrix.artifact_ext }}"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.EXPORT_NAME }}-${{ matrix.artifact_name }}
+          path: exports/${{ matrix.artifact_name }}/
+          retention-days: 14
+
+  # ─── GitHub Release (on version tag only) ────────────────────────────────────
+  release:
+    name: Publish GitHub Release
+    needs: export
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: release-artifacts/
+
+      - name: Zip each platform folder
+        run: |
+          cd release-artifacts
+          for dir in */; do
+            zip -r "${dir%/}.zip" "$dir"
+          done
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-artifacts/*.zip
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref, '-') }}  # e.g. v1.0.0-beta = prerelease

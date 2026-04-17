@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Launch the full game from the project root.
+      // Requires "godotTools.editorPath.godot4" to be set in settings.json.
+      "name": "Launch Game",
+      "type": "godot",
+      "request": "launch",
+      "project": "${workspaceFolder}",
+      "port": 6006,
+      "address": "127.0.0.1",
+      "launch_game_instance": true,
+      "launch_scene": false
+    },
+    {
+      // Launch whichever .tscn file is currently open/focused in the editor.
+      "name": "Launch Current Scene",
+      "type": "godot",
+      "request": "launch",
+      "project": "${workspaceFolder}",
+      "port": 6006,
+      "address": "127.0.0.1",
+      "launch_game_instance": true,
+      "launch_scene": true,
+      "scene": "${file}"
+    },
+    {
+      // Attach the VS Code debugger to an already-running Godot instance.
+      // Useful when you start Godot manually with --debug-collisions etc.
+      "name": "Attach to Running Godot",
+      "type": "godot",
+      "request": "launch",
+      "project": "${workspaceFolder}",
+      "port": 6006,
+      "address": "127.0.0.1",
+      "launch_game_instance": false,
+      "launch_scene": false
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+root = true
+
+# ─── All Files ────────────────────────────────────────────────────────────────
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# ─── GDScript ─────────────────────────────────────────────────────────────────
+# GDScript mandates tabs (Godot's formatter enforces this).
+[*.gd]
+indent_style = tab
+indent_size = 4
+max_line_length = 100
+
+# ─── Godot Scene / Resource Files ─────────────────────────────────────────────
+[*.{tscn,tres,godot,import,cfg,theme}]
+indent_style = tab
+indent_size = 4
+
+# ─── Shaders ──────────────────────────────────────────────────────────────────
+[*.{gdshader,shader,vert,frag,glsl}]
+indent_style = tab
+indent_size = 4
+
+# ─── JSON / YAML / TOML ───────────────────────────────────────────────────────
+[*.{json,jsonc,yaml,yml,toml}]
+indent_style = space
+indent_size = 2
+
+# ─── Markdown ─────────────────────────────────────────────────────────────────
+[*.{md,markdown}]
+trim_trailing_whitespace = false   # Trailing spaces = hard line break in Markdown
+
+# ─── Shell / PowerShell ───────────────────────────────────────────────────────
+[*.sh]
+indent_style = tab
+
+[*.{bat,ps1}]
+end_of_line = crlf
+
+# ─── Makefiles ────────────────────────────────────────────────────────────────
+[Makefile]
+indent_style = tab

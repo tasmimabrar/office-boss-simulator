@@ -1,0 +1,64 @@
+# ─── Godot 4 ──────────────────────────────────────────────────────────────────
+# Godot auto-generates this folder from your project assets.
+# Never commit it — it's fully reproducible and can be large.
+.godot/
+
+# ─── Godot 3 (legacy, if migrating) ──────────────────────────────────────────
+.import/
+*.import
+
+# ─── Export Binaries ──────────────────────────────────────────────────────────
+exports/
+
+# Export presets CAN contain API keys / signing details for some platforms.
+# Uncomment the line below if you store secrets in export_presets.cfg.
+# export_presets.cfg
+
+# ─── OS Junk ──────────────────────────────────────────────────────────────────
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ─── Editor / IDE ─────────────────────────────────────────────────────────────
+# We DO commit .vscode/ (shared team settings, extensions, launch configs)
+# Uncomment if you prefer not to share VS Code settings:
+# .vscode/
+
+# JetBrains (Rider)
+.idea/
+*.iml
+
+# ─── Logs & Temp ──────────────────────────────────────────────────────────────
+*.log
+logs/
+*.tmp
+*.bak
+*.swp
+*.orig
+
+# ─── Node / NPM (if using build tooling) ─────────────────────────────────────
+node_modules/
+npm-debug.log*
+
+# ─── Python (if using scripts / asset pipeline) ───────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/

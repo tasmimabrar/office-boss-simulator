@@ -1,0 +1,115 @@
+{
+  // ─── Godot Tools ──────────────────────────────────────────────────────────
+  // Set this to the absolute path of your Godot 4 executable.
+  // e.g. "C:/Program Files/Godot/Godot_v4.3-stable_win64.exe"
+  "godotTools.editorPath.godot4": "D:/Godot/Godot_v4.6.2-stable_win64.exe",
+  "godotTools.lsp.headlessServerMode": false,
+
+  // ─── File Associations ────────────────────────────────────────────────────
+  "files.associations": {
+    "*.gd": "gdscript",
+    "*.tres": "gdresource",
+    "*.tscn": "gdscene",
+    "*.godot": "gdresource",
+    "*.import": "gdresource",
+    "*.gdshader": "gdshader",
+    "*.theme": "gdresource"
+  },
+
+  // ─── GDScript Editor Behavior ─────────────────────────────────────────────
+  "[gdscript]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [100],
+    "editor.wordWrap": "off"
+  },
+
+  // ─── General Editor ───────────────────────────────────────────────────────
+  "editor.fontSize": 14,
+  "editor.fontFamily": "'JetBrains Mono', 'Fira Code', Consolas, monospace",
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.suggestSelection": "first",
+  "editor.inlayHints.enabled": "on",
+
+  // ─── Explorer: Hide Godot Cache ───────────────────────────────────────────
+  "files.exclude": {
+    "**/.godot": true,
+    "**/exports": true
+  },
+  "search.exclude": {
+    "**/.godot": true,
+    "**/exports": true,
+    "**/*.import": true
+  },
+  "files.watcherExclude": {
+    "**/.godot/**": true,
+    "**/exports/**": true
+  },
+
+  // ─── ErrorLens ────────────────────────────────────────────────────────────
+  "errorLens.enabledDiagnosticLevels": ["error", "warning", "info"],
+  "errorLens.delay": 200,
+
+  // ─── TODO Tree ────────────────────────────────────────────────────────────
+  "todo-tree.general.tags": [
+    "TODO", "FIXME", "BUG", "HACK", "DESIGN", "PERF", "NOTE", "XXX"
+  ],
+  "todo-tree.highlights.defaultHighlight": {
+    "type": "text-and-comment",
+    "foreground": "#ffffff",
+    "iconColour": "#ffd700"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "BUG":    { "icon": "bug",         "foreground": "#ff4444", "iconColour": "#ff4444" },
+    "FIXME":  { "icon": "tools",       "foreground": "#ff8800", "iconColour": "#ff8800" },
+    "HACK":   { "icon": "alert",       "foreground": "#ff00ff", "iconColour": "#ff00ff" },
+    "PERF":   { "icon": "zap",         "foreground": "#00ddff", "iconColour": "#00ddff" },
+    "DESIGN": { "icon": "beaker",      "foreground": "#88ff88", "iconColour": "#88ff88" }
+  },
+
+  // ─── GitLens ──────────────────────────────────────────────────────────────
+  "gitlens.codeLens.enabled": true,
+  "gitlens.currentLine.enabled": true,
+  "gitlens.blame.avatars": false,
+
+  // ─── Spell Checker: Godot / GDScript vocabulary ───────────────────────────
+  "cSpell.words": [
+    "Godot", "GDScript", "gdscript", "gdextension", "autoload",
+    "tscn", "tres", "godot", "gdignore", "gdshader",
+    "CharacterBody3D", "RigidBody3D", "AnimationPlayer", "AnimationTree",
+    "NavigationAgent3D", "PhysicsBody3D", "Area3D", "CollisionShape3D",
+    "MeshInstance3D", "WorldEnvironment", "DirectionalLight3D", "Node3D",
+    "Viewport", "SubViewport", "CanvasLayer", "PackedScene", "ResourceLoader",
+    "preload", "onready", "setget", "callable", "Callable",
+    "Vector3", "Vector2", "Vector2i", "Vector3i", "Basis", "Quaternion",
+    "Transform3D", "Transform2D", "AABB", "Rect2", "NodePath",
+    "StateMachine", "hitbox", "hurtbox", "healthbar", "respawn",
+    "lerp", "slerp", "smoothstep", "remap", "clampf", "snappedf"
+  ],
+
+  // ─── Terminal ─────────────────────────────────────────────────────────────
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.fontSize": 13,
+
+  // ─── Problem Matcher (Godot output) ───────────────────────────────────────
+  // Parses lines like:  ERROR: res://scripts/player.gd:42 - ...
+  // so VS Code underlines the file + line in the Problems panel.
+  "problemMatcher": {
+    "name": "godot",
+    "owner": "gdscript",
+    "fileLocation": ["autoDetect", "${workspaceFolder}"],
+    "pattern": {
+      "regexp": "^(ERROR|WARNING|SCRIPT ERROR):\\s+(.+):(\\d+)\\s+-\\s+(.+)$",
+      "severity": 1,
+      "file": 2,
+      "line": 3,
+      "message": 4
+    }
+  }
+}
