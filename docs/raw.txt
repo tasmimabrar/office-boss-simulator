@@ -1,0 +1,53 @@
+Game - Office Boss Sim
+
+Cartoony gfx
+Simulate running a cubicle office. Challenging gameplay, starting off small, hire employees, make them function better over time with upgrades, build office up, maintenance, bills, wages etc. Random events, employees misbehaving, HR, stock system, Competetors - will try to sabotage your work environment.
+Have a server rack system to slowly make gameplay easier by having a rare chance to hire employee with skill for it. Employees level up.
+Server rack configuration done manually at first. (Make it challenging) Better employee skill means you gain access to a flowchart system for planning out the server config allowing your employee (who is skilled enough) to configure it for you by wiring, etc.
+
+Needs - Fun backstory
+Gameplay loop like stamping papers, resolving HR requests,
+
+Player must be able to go back home and decide to spend their time wisely in order to level up certain skills or get some extra money
+
+Need bank system to get loans
+Loans accruing means creditors will start harrassing you, AND employees.
+Could branch off to the whole town being wrapped up in a mafia syndicate and your company could slowly be the means for you to carry out complex operations and dismantle other syndicates and companies involved with said syndicates.
+
+Your employees CAN get killed. Hire security.
+
+You can directly influence stock market by doing shady stuff.
+
+Game should be open world
+
+You can upgrade your house, gain prestige. Start off at a shitty shack
+
+Workstations need electricity to operate, you use a generator first, but an event causes fuel to run out? Maybe the syndicate is involved with you right off the bat and cut off your electricity.
+
+<<<If city is open world, must make electric lines realistic>>>
+
+Fuel prices change, need to buy gas from stores. Maybe the strait of Hormutz event causes fuel to be cut off randomly, causing you to hire Hobos to run on electric wheels for you to generate electricity
+
+Would be funny if you could pay them a bonus to run faster. But if you pay them too much they will run off, so don't spoil them.
+
+Realistic electricity and utility bills, buy snacks, host parties to boost morale, and by extension employee efficiency.
+
+Have customer complaints, set up a department for handling those. Reviews will affect the company profits.
+
+Note to self: learn more about how a real company operates, maybe grow a community big enough to get suggestions later on down the line.
+
+Game needs to be interesting and challenging, maintain a slow pacing and let player do lots of stuff like perhaps an underground gambling.
+
+Employee Story lines? (Too complex)
+
+Some employees might have a tendency to shit during company hour
+
+Have utilities to improve employee mood, i.e water cooler, better internet and stuff?
+
+Maybe employees will start playing games during company hour. Might need to bust them manually, OR hire someone to keep tabs on them like a manager, or end-game AI tool with keylogger for confidence score of what employees are doing.
+
+Gradually GRADUALLY replace them all with AI
+
+Simulate an economy in the game with perhaps a survival mode (optional)? Start of the game should be challenging.
+
+Game needs good balancing to drag gameplay out.
