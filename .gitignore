@@ -2,7 +2,6 @@
 # Godot auto-generates this folder from your project assets.
 # Never commit it — it's fully reproducible and can be large.
 .godot/
-
 # ─── Godot 3 (legacy, if migrating) ──────────────────────────────────────────
 .import/
 *.import

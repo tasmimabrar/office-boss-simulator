@@ -17,9 +17,9 @@
 
 ---
 
-## Open Question — Must Decide Before GDD
-- [ ] **Player's physical role:** First/third person walking the world (affects ALL architecture)
-      vs. top-down management cursor view like Two Point Hospital?
+## Player Perspective — DECIDED
+- [x] ~~Top-down management view~~ — cut
+- [x] **First-person, walking the world.** The player physically inhabits the city, enters buildings on foot, drives vehicles, and interacts with everything directly. No cursor-mode management overlay.
 
 ---
 

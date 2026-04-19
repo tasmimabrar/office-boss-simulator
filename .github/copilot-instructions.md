@@ -12,6 +12,17 @@ This file is loaded as context on every request. **Do not bloat it.**
 
 ---
 
+## 🧠 Meta Rule — Think Before Instructing
+
+Before giving any editor walkthrough or implementation steps, Copilot must:
+1. **Establish the full toolset first.** Before any implementation task, confirm what tools the developer has and knows. Recommend the best-practice toolchain for the task — don't default to the lowest-friction option inside a single tool when a proper pipeline exists.
+2. **Choose the best approach first** — consider all options, pick the most maintainable one, then give instructions for that one only. Never give a method and then reveal a better one mid-task.
+3. **State trade-offs upfront** — if a shortcut has a known limitation, say so before the user commits to it.
+4. **Give complete, sequential steps** — instructions must be finishable without needing a follow-up. If a step has a gotcha, include it inline.
+5. **No backtracking** — if better information changes the approach, say "stop, here's the correct way" before the user has done more work the wrong way.
+
+---
+
 ## ⛔ HARD LIMITS — What Copilot Must NEVER Do
 
 These tasks **cannot be done reliably from a text editor**. Attempting them produces broken,
@@ -71,6 +82,22 @@ These require editor baking, visual graph editing, or tile painting that has no 
 A 3D game built in **Godot 4.6** using **GDScript** (statically typed).
 Engine config: **Forward+ renderer**, **Jolt Physics**, **D3D12** on Windows.
 The game concept will be filled in once the GDD is finalized — treat this file as a living document.
+
+### Confirmed Toolchain
+| Tool | Role |
+|---|---|
+| **Godot 4.6** | Scene assembly, scripting, game logic |
+| **Blender** | All 3D geometry — levels, props, characters, vehicles |
+| **VS Code** | GDScript editing |
+| **Substance Painter** | PBR texture authoring |
+| **Photoshop** | UI artwork, 2D textures |
+| **Audacity** | Audio cleanup, trimming, format conversion |
+| **BFXR** | Quick procedural game SFX |
+| **Freesound.org** | CC-licensed ambient/environmental recordings |
+| **REAPER** *(recommended, not yet confirmed)* | Music composition, complex SFX design |
+
+> Level geometry is always built in **Blender** first and imported as `.glb` with `UCX_` collision meshes.
+> Never build final level geometry inside the Godot editor.
 
 ---
 

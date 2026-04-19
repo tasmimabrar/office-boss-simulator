@@ -51,3 +51,9 @@ Gradually GRADUALLY replace them all with AI
 Simulate an economy in the game with perhaps a survival mode (optional)? Start of the game should be challenging.
 
 Game needs good balancing to drag gameplay out.
+
+Need advertisements
+
+What if map has several different areas with different areas to lease out. You start off your office at a low income neighborhood,
+There should be a property market with different stuff you can buy like houses, apartments and perhaps have business DLCs with fully functional businesses like a coffee shop/ laundromat/ (more ideas go here) that can be managed, and should have realistic and detailed ways to be made more efficient, should run like the real organization, with hireable employees that actually work (Optimization is focus, so when out of view, employee work must be correctly simulated and such). Game should be difficult, but DLCs could be balanced out to make game a wee bit easier to progress through. Cashier system, delivering the product, so on. Game needs to do things right, to make the player have losses and profit dynamically in order to make them feel like the game is a real challenge.
+We need to take into account how busy our own office or the side-businesses get based on the time of day. The core concept of the game is to have a
